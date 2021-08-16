@@ -1,7 +1,7 @@
 import { Auth0Provider } from '@auth0/auth0-react';
 import React, { PropsWithChildren } from 'react';
 import { useNavigate } from 'react-router-dom';
-import appConfig from '../config/config';
+import { authConfig } from '../config';
 
 const AuthProvider = (props: PropsWithChildren<any>) => {
   const navigate = useNavigate();
@@ -10,8 +10,8 @@ const AuthProvider = (props: PropsWithChildren<any>) => {
   };
   const { children } = props;
   return <Auth0Provider
-    domain={appConfig.auth0Domain}
-    clientId={appConfig.auth0ClientId}
+    domain={authConfig.auth0Domain}
+    clientId={authConfig.auth0ClientId}
     redirectUri={window.location.origin}
     onRedirectCallback={onRedirectCallback}
   >
