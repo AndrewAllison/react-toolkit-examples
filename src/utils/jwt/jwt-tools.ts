@@ -1,6 +1,6 @@
 import jwtDecode from 'jwt-decode';
 import { jwtConfig } from '../../config';
-import { JwtBase } from './jwt-base';
+import { JwtBase } from './models/jwt-base';
 
 const { tokenKey } = jwtConfig;
 
@@ -15,15 +15,32 @@ const isTokenExpired = (token: string): boolean => {
   return exp * 1000 >= Date.now();
 };
 
+/**
+ * Removes the authentication token from local storage
+ */
 const removeToken = () => {
   localStorage.removeItem(tokenKey);
 };
+
+/**
+ * Gets the currently stored access token
+ * @returns {string | undefined} A stringified version of the stored token or undefined
+ */
 const getAccessToken = () => localStorage.getItem(tokenKey);
 
-const setToken = (payload: any) => {
-  localStorage.setItem(tokenKey, payload);
+/**
+ * Sets the accessToken in local storage
+ * @param accessToken {string} The accessToken to store
+ */
+const setToken = (accessToken: string) => {
+  localStorage.setItem(tokenKey, accessToken);
 };
 
+/**
+ * Verifies that the token exists and that it is not expired
+ * @param token {string} The auth token to be verified
+ * @returns {boolean | null} true if the token is not expired, null if it is expired.
+ */
 const verify = (token: string) => {
   try {
     if (!isTokenExpired(token)) {
@@ -36,18 +53,15 @@ const verify = (token: string) => {
   }
 };
 
+/**
+ * Returns a valid accessToken from local storage
+ * @returns {string | null} A string version of the accessToken or null if it's empty / invalid
+ */
 const getValidAccessToken = () => {
   const storedToken = getAccessToken();
-  if (!storedToken) {
-    return null;
-  }
+  if (!storedToken) return null;
   try {
-    const decodedToken = jwtDecode(storedToken);
-    if (!isTokenExpired(decodedToken)) {
-      setToken(null);
-      return null;
-    }
-    return storedToken;
+    return verify(storedToken) ? storedToken : null;
   } catch (e) {
     removeToken();
     console.error('FAILED', e);
