@@ -1,4 +1,4 @@
-import { Box } from '@material-ui/core';
+import { Box, Typography } from '@material-ui/core';
 import { useTheme } from '@material-ui/core/styles';
 import React from 'react';
 
@@ -11,13 +11,10 @@ const Home = () => {
     justifyContent: 'center',
     alignItems: 'center',
     backgroundClip: theme.palette.background.default,
+    mt: 2,
+    width: '100%'
   }}>
-    <Box sx={{
-      padding: theme.spacing(2),
-      fontSize: '30px',
-      color: theme.palette.text.primary,
-    }}>Welcome
-    </Box>
+    <Typography variant="h1" >Welcome</Typography>
   </Box>;
 };
 

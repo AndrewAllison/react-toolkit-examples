@@ -14,7 +14,7 @@ ReactDOM.render(
       <Router>
         <AuthProvider>
           <CustomThemeProvider>
-            <App/>
+            <App />
           </CustomThemeProvider>
         </AuthProvider>
       </Router>

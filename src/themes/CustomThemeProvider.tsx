@@ -2,31 +2,18 @@ import { CssBaseline } from '@material-ui/core';
 import { createTheme, StyledEngineProvider, ThemeProvider } from '@material-ui/core/styles';
 import React, { PropsWithChildren } from 'react';
 import { useAppSelector } from '../store/hooks';
-import { appColors, darkModeColors } from './colors';
+import { lightTheme, darkTheme } from './theme';
 
 const CustomThemeProvider = (props: PropsWithChildren<{}>) => {
   const { children } = props;
   const darkMode = useAppSelector(state => state.darkMode);
-  const theme = createTheme({
-    palette: {
-      mode: darkMode ? 'dark' : 'light',
-      primary: {
-        main: appColors.primary,
-      },
-      background: {
-        default: darkMode ? darkModeColors.background : appColors.background,
-      },
-      text: {
-        primary: darkMode ? darkModeColors.font : appColors.font,
-      },
-    },
-  });
+  const theme = createTheme(darkMode ? lightTheme : darkTheme);
   return <StyledEngineProvider injectFirst>
-    <ThemeProvider theme={theme}>
+      <ThemeProvider theme={theme}>
       <CssBaseline/>
       {children}
-    </ThemeProvider>
-  </StyledEngineProvider>;
+      </ThemeProvider>
+    </StyledEngineProvider>;
 };
 
 export default CustomThemeProvider;
