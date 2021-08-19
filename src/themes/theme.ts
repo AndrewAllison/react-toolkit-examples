@@ -1,6 +1,6 @@
 import { createTheme, responsiveFontSizes, ThemeOptions } from '@material-ui/core/styles';
 import darkScrollbar from '@material-ui/core/darkScrollbar';
-import { appColors, darkModeColors } from './colors';
+import { appColors } from './colors';
 
 const baseLine = {
   MuiCssBaseline: {

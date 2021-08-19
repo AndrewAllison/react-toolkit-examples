@@ -1,7 +1,6 @@
 import { Box, Card } from '@material-ui/core';
 import { Meta } from '@storybook/react';
 import React from 'react';
-import { StringControl } from './index';
 import PasswordControl from './PasswordControl';
 
 export default {
