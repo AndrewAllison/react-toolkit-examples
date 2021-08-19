@@ -1,21 +1,32 @@
 import React from 'react';
-import { CssBaseline } from '@material-ui/core';
-import { ThemeProvider as EmotionThemeProvider } from "emotion-theming"
-import { ThemeProvider } from "@material-ui/core";
-import { lightTheme } from '../src/themes/theme';
-import { createTheme } from '@material-ui/core/styles';
+import { Box, CssBaseline, ThemeProvider } from '@material-ui/core';
+import { ThemeProvider as EmotionThemeProvider } from "emotion-theming";
+import { lightTheme,  darkTheme } from '../src/themes/theme';
 
 const withThemeProvider = (Story, context) => {
-  const theme = createTheme(lightTheme);
+  const selectTheme = (themeName) => {
+    const themeChoices = {
+      light: lightTheme,
+      dark: darkTheme
+    };
+    return themeChoices[themeName.toLowerCase()];
+  };
+  const theme = selectTheme(context.globals.theme);
   return (
     <EmotionThemeProvider theme={theme}>
       <ThemeProvider theme={theme}>
-        <CssBaseline />
-        <Story {...context} />
+        <CssBaseline/>
+        <Box sx={{
+          backgroundColor: theme.palette.background.default,
+          height: '100%',
+          p: 4
+        }}>
+          <Story {...context} />
+        </Box>
       </ThemeProvider>
     </EmotionThemeProvider>
-  )
-}
+  );
+};
 
 export const parameters = {
   actions: { argTypesRegex: "^on[A-Z].*" },
@@ -40,6 +51,21 @@ export const parameters = {
     ],
   },
   
+};
+
+export const globalTypes = {
+  theme: {
+    name: 'Theme',
+    description: 'Global theme for components',
+    defaultValue: 'light',
+    toolbar: {
+      icon: 'circlehollow',
+      // Array of plain string values or MenuItem shape (see below)
+      items: ['light', 'dark'],
+      // Property that specifies if the name of the item will be displayed
+      showName: true,
+    },
+  },
 };
 
 export const decorators = [withThemeProvider];

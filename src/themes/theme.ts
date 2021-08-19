@@ -1,8 +1,38 @@
-// A custom theme for this app
-import { ThemeOptions } from '@material-ui/core/styles';
+import { createTheme, responsiveFontSizes, ThemeOptions } from '@material-ui/core/styles';
+import darkScrollbar from '@material-ui/core/darkScrollbar';
 import { appColors, darkModeColors } from './colors';
 
-const lightTheme: ThemeOptions = {
+const baseLine = {
+  MuiCssBaseline: {
+    styleOverrides: {
+      '*': {
+        boxSizing: 'border-box',
+        margin: 0,
+        padding: 0,
+      },
+      html: {
+        '-webkit-font-smoothing': 'antialiased',
+        '-moz-osx-font-smoothing': 'grayscale',
+        height: '100%',
+        width: '100%',
+      },
+      body: {
+        height: '100%',
+        width: '100%',
+        ...darkScrollbar(),
+      },
+      '#root': {
+        height: '100%',
+        width: '100%',
+      },
+    },
+  },
+}
+
+const theme1: ThemeOptions = {
+  components: {
+    ...baseLine,
+  },
   palette: {
     mode: 'light',
     primary: {
@@ -10,10 +40,11 @@ const lightTheme: ThemeOptions = {
     },
     secondary: {
       contrastText: '#ffffff',
-      main: '#ccff88'
+      main: '#ccff88',
     },
     background: {
-      default: appColors.background,
+      paper: '#ffffff',
+      default: '#cfcfcf',
     },
     text: {
       primary: appColors.font,
@@ -23,45 +54,50 @@ const lightTheme: ThemeOptions = {
     borderRadius: 16,
   },
 };
-
-const darkTheme: ThemeOptions = {
+const theme2: ThemeOptions = {
+  components: {
+    ...baseLine,
+  },
   palette: {
     action: {
-      active: '#6b778c'
+      active: '#6b778c',
     },
     background: {
-      default: '#f4f5f7',
-      paper: '#ffffff'
+      default: '#171c24',
+      paper: '#222b36',
     },
     error: {
       contrastText: '#ffffff',
-      main: '#ff0000'
+      main: '#ff0000',
     },
-    mode: 'light',
+    mode: 'dark',
     primary: {
-      contrastText: darkModeColors.font,
-      main: darkModeColors.background
+      contrastText: '#ffffff',
+      main: '#f1bf3a',
     },
     secondary: {
       contrastText: '#ffffff',
-      main: '#222b36'
+      main: '#222b36',
     },
     success: {
       contrastText: '#ffffff',
-      main: '#0000ff'
+      main: '#0000ff',
     },
     text: {
-      primary: '#172b4d',
-      secondary: '#6b778c'
+      primary: '#ffffff',
+      secondary: '#B5BABA',
     },
     warning: {
       contrastText: '#ffffff',
-      main: '#ff9800'
-    }
+      main: '#ff9800',
+    },
   },
   shape: {
-    borderRadius: 16
-  }
+    borderRadius: 16,
+  },
 };
 
-export { lightTheme, darkTheme }
+const lightTheme = responsiveFontSizes(createTheme(theme1));
+const darkTheme = responsiveFontSizes(createTheme(theme2));
+
+export { lightTheme, darkTheme };

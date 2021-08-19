@@ -3,4 +3,4 @@ export default interface FileViewerStructure {
   name: string;
   extension?: string;
   children?: FileViewerStructure[];
-}
+};

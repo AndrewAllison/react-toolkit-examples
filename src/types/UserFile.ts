@@ -4,4 +4,4 @@ export default interface UserFile {
   relativePath: string;
   code: string;
   extension: string;
-}
+};;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;

@@ -3,14 +3,16 @@ import { Paper } from '@material-ui/core';
 
 import Header from '../components/common/header/Header';
 
-const Main = (props: PropsWithChildren<{}>) => {
+const Main = (props: PropsWithChildren<any>) => {
   const { children } = props;
-  return <div className='main'>
-    <Header/>
-    <Paper className='page'>
-      {children}
-    </Paper>
-  </div>;
+  return (
+    <div className="main">
+      <Header />
+      <Paper className="page">
+        {children}
+      </Paper>
+    </div>
+  );
 };
 
 export default Main;

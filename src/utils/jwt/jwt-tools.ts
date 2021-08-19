@@ -10,7 +10,7 @@ const { tokenKey } = jwtConfig;
  * @returns {boolean} true if the token is valid false if it has expired.
  */
 const isTokenExpired = (token: string): boolean => {
-  if(token === null || token === '') return false;
+  if (token === null || token === '') return false;
   const { exp } = (jwtDecode(token) as JwtBase);
   return exp * 1000 >= Date.now();
 };
@@ -75,5 +75,5 @@ export {
   getValidAccessToken,
   removeToken,
   setToken,
-  verify
+  verify,
 };

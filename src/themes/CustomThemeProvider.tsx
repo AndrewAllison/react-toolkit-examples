@@ -4,17 +4,18 @@ import React, { PropsWithChildren } from 'react';
 import { useAppSelector } from '../store/hooks';
 import { lightTheme, darkTheme } from './theme';
 
-const CustomThemeProvider = (props: PropsWithChildren<{}>) => {
+const CustomThemeProvider = (props: PropsWithChildren<any>) => {
   const { children } = props;
-  const darkMode = useAppSelector(state => state.darkMode);
+  const darkMode = useAppSelector((state) => state.darkMode);
   const theme = createTheme(darkMode ? lightTheme : darkTheme);
-  return <StyledEngineProvider injectFirst>
+  return (
+    <StyledEngineProvider injectFirst>
       <ThemeProvider theme={theme}>
-      <CssBaseline/>
-      {children}
+        <CssBaseline />
+        {children}
       </ThemeProvider>
-    </StyledEngineProvider>;
+    </StyledEngineProvider>
+  );
 };
 
 export default CustomThemeProvider;
-

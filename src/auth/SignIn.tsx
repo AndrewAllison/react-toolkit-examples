@@ -7,10 +7,14 @@ const SignIn = () => {
   const onSignIn = () => {
     loginWithRedirect();
   };
-  return <Button
-    className="sing-in"
-    onClick={onSignIn}
-  >Sign In</Button>;
+  return (
+    <Button
+      className="sing-in"
+      onClick={onSignIn}
+    >
+      Sign In
+    </Button>
+  );
 };
 
 export default SignIn;

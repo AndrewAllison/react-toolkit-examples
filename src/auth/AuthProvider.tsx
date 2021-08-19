@@ -9,14 +9,16 @@ const AuthProvider = (props: PropsWithChildren<any>) => {
     navigate(appState?.retufnTo || window.location.pathname);
   };
   const { children } = props;
-  return <Auth0Provider
-    domain={authConfig.auth0Domain}
-    clientId={authConfig.auth0ClientId}
-    redirectUri={window.location.origin}
-    onRedirectCallback={onRedirectCallback}
-  >
-    {children}
-  </Auth0Provider>;
+  return (
+    <Auth0Provider
+      domain={authConfig.auth0Domain}
+      clientId={authConfig.auth0ClientId}
+      redirectUri={window.location.origin}
+      onRedirectCallback={onRedirectCallback}
+    >
+      {children}
+    </Auth0Provider>
+  );
 };
 
 export default AuthProvider;

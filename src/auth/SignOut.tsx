@@ -6,13 +6,17 @@ const SignOut = () => {
   const { logout } = useAuth0();
   const onSignOut = () => {
     logout({
-      returnTo: window.location.origin
+      returnTo: window.location.origin,
     });
   };
-  return <Button
-    className="sign-out"
-    onClick={onSignOut}
-  >Sign Out</Button>;
+  return (
+    <Button
+      className="sign-out"
+      onClick={onSignOut}
+    >
+      Sign Out
+    </Button>
+  );
 };
 
 export default SignOut;

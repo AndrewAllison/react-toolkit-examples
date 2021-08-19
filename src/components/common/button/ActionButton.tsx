@@ -1,5 +1,5 @@
 import { Button, CircularProgress } from '@material-ui/core';
-import React from 'react';
+import React, { MouseEventHandler, ReactChild, ReactChildren } from 'react';
 
 export interface ActionButtonProps {
   /**
@@ -13,13 +13,14 @@ export interface ActionButtonProps {
   /**
    * Children to be displayed in the button
    */
-  children: any;
+  children: string | ReactChild | ReactChild[] | ReactChildren | ReactChildren[];
   /**
    * Function for clicking
    */
-  onClick: any;
+  onClick: MouseEventHandler<any> | undefined;
   /**
    * The type of button to be used
+   * one of 'outlined' | 'text' | 'contained'
    */
   variant: 'outlined' | 'text' | 'contained';
   /**
@@ -30,17 +31,23 @@ export interface ActionButtonProps {
 }
 
 const ActionButton: React.FC<ActionButtonProps> = ({
-                                                     isDisabled = false,
-                                                     onClick, children,
-                                                     variant = 'contained',
-                                                     showSpinner = false,
-                                                     isSubmitting = false,
-                                                   }) => {
-  return <Button disabled={isDisabled || isSubmitting} onClick={onClick} variant={variant}>
-    {(showSpinner || isSubmitting) &&
-    <CircularProgress size={12} color={(isDisabled || isSubmitting) ? 'primary' : 'secondary'}/>}
+  isDisabled = false,
+  onClick, children,
+  variant,
+  showSpinner = false,
+  isSubmitting = false,
+}) => (
+  <Button disabled={isDisabled || isSubmitting} onClick={onClick} variant={variant}>
+    {(showSpinner || isSubmitting)
+      && (
+        <CircularProgress
+          aria-describedby="isSubmitting"
+          size={12}
+          color={(isDisabled || isSubmitting) ? 'primary' : 'secondary'}
+        />
+      )}
     {children}
-  </Button>;
-};
+  </Button>
+);
 
 export default ActionButton;

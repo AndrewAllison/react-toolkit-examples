@@ -1,4 +1,4 @@
-import { useEffect } from 'react';
+import React, { useEffect } from 'react';
 import NProgress from 'nprogress';
 import { Box } from '@material-ui/core';
 
@@ -15,7 +15,7 @@ const LoadingScreen = () => {
     <Box
       sx={{
         backgroundColor: 'background.paper',
-        minHeight: '100%'
+        minHeight: '100%',
       }}
     />
   );

@@ -1,7 +1,7 @@
 import { action } from '@storybook/addon-actions';
 import { Meta, Story } from '@storybook/react';
 import React from 'react';
-import ActionButton, { ActionButtonProps } from '../components/common/button/ActionButton';
+import ActionButton, { ActionButtonProps } from './ActionButton';
 
 export default {
   title: 'Components/Buttons',
@@ -12,15 +12,15 @@ export default {
     },
     isDisabled: {
       name: 'Disabled',
-      description: 'Is the button disabled or not'
+      description: 'Is the button disabled or not',
     },
     showSpinner: {
       name: 'Show Spinner',
-      description: 'Determine if the spinner is to be displayed'
+      description: 'Determine if the spinner is to be displayed',
     },
     isSubmitting: {
       name: 'Is Submitting',
-      description: 'Should indicate if the component is in a submitting state.'
+      description: 'Should indicate if the component is in a submitting state.',
     },
     variant: {
       name: 'Variant',
@@ -31,13 +31,13 @@ export default {
     },
     children: {
       name: 'Label',
-      description: 'Text in the button.'
-    }
+      description: 'Text in the button.',
+    },
   },
 } as Meta;
 
 const Template: Story<ActionButtonProps> = (args: ActionButtonProps) => {
-  const {  children, ...rest } = args;
+  const { children, ...rest } = args;
   return (
     <ActionButton {...rest}>
       {children}
@@ -52,5 +52,5 @@ Basic.args = {
   children: 'Man',
   isSubmitting: false,
   isDisabled: false,
-  showSpinner: false
+  showSpinner: false,
 };

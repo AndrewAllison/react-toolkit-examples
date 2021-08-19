@@ -1,24 +1,26 @@
 import { jwtConfig } from '../../config';
-import { getAccessToken, getValidAccessToken, isTokenExpired, removeToken, setToken, verify } from './jwt-tools';
+import {
+  getAccessToken, getValidAccessToken, isTokenExpired, removeToken, setToken, verify,
+} from './jwt-tools';
 import { createMockAccessTokens, createValidAccessToken } from './utils/create-mock-access.tokens';
 
-const localStorageMock = (function() {
+const localStorageMock = (() => {
   let store: any = {};
   return {
-    getItem: function(key: string) {
+    getItem(key: string) {
       return store[key];
     },
-    setItem: function(key: string, value: object) {
+    setItem(key: string, value: Record<string, unknown>) {
       store[key] = value.toString();
     },
-    clear: function() {
+    clear() {
       store = {};
     },
-    removeItem: function(key: string) {
+    removeItem(key: string) {
       delete store[key];
     },
   };
-})();
+});
 Object.defineProperty(window, 'localStorage', { value: localStorageMock });
 
 describe('jwt-tools', () => {
@@ -84,7 +86,6 @@ describe('jwt-tools', () => {
       const accessToken = createMockAccessTokens();
       window.localStorage.setItem(tokenKey, accessToken);
 
-
       const isValid = verify(accessToken);
       const localToken = window.localStorage.getItem(tokenKey);
 
@@ -112,5 +113,4 @@ describe('jwt-tools', () => {
       expect(validToken).toEqual(null);
     });
   });
-
 });
