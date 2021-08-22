@@ -40,6 +40,8 @@ jobs:
         with:
           node-version: ${{ matrix.node }}
       - name: Install modules
-        run: yarn
+        run: npm
       - name: Run tests
-        run: yarn test
+        run: npm test
+        env:
+          SKIP_PREFLIGHT_CHECK: true
