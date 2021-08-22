@@ -21,7 +21,7 @@ const localStorageMock = (() => {
     },
   };
 });
-Object.defineProperty(window, 'localStorage', { value: localStorageMock });
+Object.defineProperty(window, 'localStorage', { value: localStorageMock() });
 
 describe('jwt-tools', () => {
   describe('isTokenValid', () => {
