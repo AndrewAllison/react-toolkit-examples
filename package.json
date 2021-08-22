@@ -45,7 +45,7 @@
     "lint-fix": "eslint --fix ./src",
     "start": "react-scripts start",
     "build": "react-scripts build",
-    "test": "react-scripts test --watchAll=false --maxWorkers=50%",
+    "test": "react-scripts test --watchAll=false",
     "eject": "react-scripts eject",
     "prepare": "husky install",
     "createhook": "husky add .husky/pre-commit \"npm test\"",
