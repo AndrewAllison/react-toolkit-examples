@@ -1,17 +1,19 @@
-import { useAuth0 } from '@auth0/auth0-react';
-import { Button } from '@material-ui/core';
 import React from 'react';
+import { Button } from '@material-ui/core';
+import { useNavigate } from 'react-router-dom';
+import { useAppDispatch } from '../store/hooks';
+import { setIsAuthenticated } from '../store/reducers/auth/auth-reducers';
 
 const SignOut = () => {
-  const { logout } = useAuth0();
+  const navigate = useNavigate()
+  const dispatch = useAppDispatch();
   const onSignOut = () => {
-    logout({
-      returnTo: window.location.origin,
-    });
+    dispatch(setIsAuthenticated(false));
+    navigate(`${window.location.origin}/login`);
   };
   return (
     <Button
-      className="sign-out"
+      className="signOut"
       onClick={onSignOut}
     >
       Sign Out

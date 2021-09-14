@@ -1,0 +1,16 @@
+overwrite: true
+schema: "http://localhost:6009/graphql"
+documents: './src/**/*.graphql'
+generates:
+  ./graphql.schema.json:
+    plugins:
+      - "introspection"
+  src/api/generated.ts:
+    plugins:
+      - add:
+          content: "/* eslint-disable */"
+      - typescript
+      - typescript-operations
+      - typescript-rtk-query:
+          importBaseApiFrom: './api'
+          exportHooks: true

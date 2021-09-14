@@ -1,16 +1,17 @@
+import { useTheme } from '@material-ui/core/styles';
 import React, { PropsWithChildren } from 'react';
-import { Paper } from '@material-ui/core';
 
 import Header from '../components/common/header/Header';
 
 const Main = (props: PropsWithChildren<any>) => {
   const { children } = props;
+  const theme = useTheme();
   return (
     <div className="main">
       <Header />
-      <Paper className="page">
+      <div className="page" style={{ backgroundColor: theme.palette.background.paper }}>
         {children}
-      </Paper>
+      </div>
     </div>
   );
 };

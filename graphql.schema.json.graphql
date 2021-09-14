@@ -1,0 +1,55 @@
+# This file was generated based on "graphql.schema.json". Do not edit manually.
+
+schema {
+    query: Query
+    mutation: Mutation
+}
+
+type AuthorizeResponse {
+    code: String
+    uic: String
+}
+
+type Mutation {
+    "Used as the first part of the login process, provides a code to be exchanged for an auth token"
+    authorize(authorizeData: LoginRequest): AuthorizeResponse
+    "Register a new user with the given details"
+    register(registrationData: RegisterUserInput): AuthorizeResponse
+    "Exchange code and uic for accessToken"
+    token(tokenRequest: TokenRequest): TokenResponse
+}
+
+type Query {
+    profile: UserProfile
+}
+
+type TokenResponse {
+    accessToken: String
+    profile: UserProfile
+}
+
+type UserProfile {
+    displayName: String
+    email: String
+    firstName: String
+    id: ID!
+    lastName: String
+}
+
+input LoginRequest {
+    email: String
+    password: String
+}
+
+"User registration input"
+input RegisterUserInput {
+    email: String
+    firstName: String
+    lastName: String
+    password: String
+}
+
+input TokenRequest {
+    code: String
+    uic: String
+}

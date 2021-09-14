@@ -2,21 +2,18 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import { BrowserRouter as Router } from 'react-router-dom';
 import App from './App';
-import AuthProvider from './auth/AuthProvider';
+import './index.css';
 import reportWebVitals from './reportWebVitals';
 import ReduxProvider from './store/ReduxProvider';
 import CustomThemeProvider from './themes/CustomThemeProvider';
-import './index.css';
 
 ReactDOM.render(
   <React.StrictMode>
     <ReduxProvider>
       <Router>
-        <AuthProvider>
-          <CustomThemeProvider>
-            <App />
-          </CustomThemeProvider>
-        </AuthProvider>
+        <CustomThemeProvider>
+          <App />
+        </CustomThemeProvider>
       </Router>
     </ReduxProvider>
   </React.StrictMode>,

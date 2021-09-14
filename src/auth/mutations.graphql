@@ -1,0 +1,19 @@
+mutation authorize($authorizeLoginDetails: LoginRequest) {
+    authorize(authorizeData: $authorizeLoginDetails) {
+        code
+        uic
+    }
+}
+
+mutation token($tokenTokenRequest: TokenRequest) {
+    token(tokenRequest: $tokenTokenRequest) {
+        accessToken
+        profile {
+            id
+            displayName
+            email
+            firstName
+            lastName
+        }
+    }
+}

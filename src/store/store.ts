@@ -2,7 +2,8 @@ import { configureStore } from '@reduxjs/toolkit';
 import {
   FLUSH, PAUSE, PERSIST, persistStore, PURGE, REGISTER, REHYDRATE,
 } from 'redux-persist';
-import persistedReducer from './persist.config';
+import { api } from 'src/api/generated';
+import persistedReducer from './persist/persist.config';
 
 const ignoredActions = [FLUSH, PAUSE, PERSIST, REHYDRATE, PURGE, REGISTER];
 
@@ -13,7 +14,7 @@ const store = configureStore({
     serializableCheck: {
       ignoredActions,
     },
-  }),
+  }).concat(api.middleware),
 });
 
 export const persistor = persistStore(store);

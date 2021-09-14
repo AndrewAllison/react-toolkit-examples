@@ -2,7 +2,7 @@ import React from 'react';
 import SignOut from '../../../auth/SignOut';
 
 const AuthenticatedButtons = () => (
-  <div className="auth-buttons">
+  <div className="authButtons">
     <SignOut />
   </div>
 );
